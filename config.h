@@ -67,9 +67,9 @@ static const Layout layouts[] = {
 
 static Key keys[] = {
 	/* modifier                     key                        function        argument */
-	{ 0,				XF86XK_AudioRaiseVolume,   spawn,          SHCMD("pactl set-sink-volume 0 +5%")  },
-	{ 0,				XF86XK_AudioLowerVolume,   spawn,          SHCMD("pactl set-sink-volume 0 -5%")  },
-	{ 0,				XF86XK_AudioMute,          spawn,          SHCMD("pactl set-sink-mute 0 toggle") },
+	{ 0,				XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")  },
+	{ 0,				XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer set Master 5%-")  },
+	{ 0,				XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle") },
 	{ 0,				XF86XK_MonBrightnessUp,	   spawn,	   SHCMD("brightness 0")  },
 	{ 0,				XF86XK_MonBrightnessDown,  spawn,	   SHCMD("brightness 1") },
 	{ 0,				XK_Print,		   spawn,	   SHCMD("screenshot") },
