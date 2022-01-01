@@ -12,12 +12,12 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fira Code Regular:size=16" };
-static const char col_gray1[]       = "#171717";
+static const char *fonts[]          = { "Fira Code Regular:size=17" };
+static const char col_gray1[]       = "#1c1a1a";
 static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#0066db";
+static const char col_gray3[]       = "#d6d4d4";
+static const char col_gray4[]       = "#ffffff";
+static const char col_cyan[]        = "#e6ebed";
 static const char *colors[][3]      = {
 	/*               fg         bg              border   */
 	[SchemeNorm] = { col_gray3, col_gray1,      col_gray2 },
@@ -25,7 +25,7 @@ static const char *colors[][3]      = {
 	[SchemeStatus]  = { col_gray3, col_gray1,   "#000000" }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]  = { col_gray4, col_gray1,  "#000000" }, // Tagbar left selected {text,background,not used but cannot be empty}
         [SchemeTagsNorm]  = { col_gray3, col_gray1, "#000000" }, // Tagbar left unselected {text,background,not used but cannot be empty}
-        [SchemeInfoSel]  = { "#ffffff", col_cyan,   "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
+        [SchemeInfoSel]  = { "#000000", col_cyan,   "#000000" }, // infobar middle  selected {text,background,not used but cannot be empty}
         [SchemeInfoNorm]  = { col_gray3, col_gray1, "#000000" }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
@@ -49,8 +49,8 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "[T]",      tile },    /* first entry is default */
+	{ "[F]",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
 
@@ -67,14 +67,14 @@ static const Layout layouts[] = {
 
 static Key keys[] = {
 	/* modifier                     key                        function        argument */
-	{ 0,				XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")  },
-	{ 0,				XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer set Master 5%-")  },
-	{ 0,				XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle") },
+	{ 0,				XF86XK_AudioRaiseVolume,   spawn,          SHCMD("pamixer -i 5")  },
+	{ 0,				XF86XK_AudioLowerVolume,   spawn,          SHCMD("pamixer -d 5")  },
+	{ 0,				XF86XK_AudioMute,          spawn,          SHCMD("pamixer -t") },
 	{ 0,				XF86XK_MonBrightnessUp,	   spawn,	   SHCMD("brightness 0")  },
 	{ 0,				XF86XK_MonBrightnessDown,  spawn,	   SHCMD("brightness 1") },
 	{ 0,				XK_Print,		   spawn,	   SHCMD("screenshot") },
 	{ MODKEY,			XK_d,		   	   spawn,	   SHCMD("dmenu_run") },
-	{ MODKEY,			XK_w,                      spawn,	   SHCMD("firefox") },
+	{ MODKEY,			XK_w,                      spawn,	   SHCMD("chromium -enable-features=WebUIDarkMode --force-dark-mode") },
 	{ MODKEY,                       XK_minus,                  setgaps,        {.i = -1 } },
 	{ MODKEY,                       XK_equal,                  setgaps,        {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_equal,                  setgaps,        {.i = 0  } },
